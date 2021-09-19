@@ -1,12 +1,15 @@
-import {React, useState} from 'react'
-import PropTypes from 'prop-types';
+import {React, useState, useContext} from 'react'
+// import PropTypes from 'prop-types';
+import { TodosContent } from '../content/TodosContent';
 
-TodoForm.propTypes = {
-    addToDo: PropTypes.func.isRequired
-};
+// TodoForm.propTypes = {
+//     addToDo: PropTypes.func.isRequired
+// };
 
   
-export default function TodoForm(props) {
+export default function TodoForm() {
+    const {todos, setTodos, idForTodo, setIdForTodo } = useContext(TodosContent);
+
     const [todo, setTodo] = useState('');
 
     function handleInput(event)
@@ -23,7 +26,17 @@ export default function TodoForm(props) {
             return;
         }
 
-        props.addToDo(todo);
+        setTodos([
+            ...todos, 
+            {
+              id: idForTodo,
+              title: todo,
+              isComplete: false,
+              isEditing: false,
+            }
+        ]);
+      
+        setIdForTodo(id => id + 1);
 
         setTodo(''); 
     }

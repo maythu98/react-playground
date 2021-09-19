@@ -142,3 +142,11 @@
     color: #a6a9af;
     text-align: center;
   }
+
+  .toggle {
+    margin: 30px auto;
+  }
+
+  .toggle button {
+    margin: auto 3px;
+  }
